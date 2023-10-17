@@ -72,7 +72,7 @@ export default function Profile() {
     const handleUpdate = async () => {
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 0B8pGyJ-BJHG9KQVsYGXhq07fIt_H3JS`,
+            'Authorization': `Bearer apikey`,
         };
         const body = {
             first_name: Fname ?? user.first_name,
@@ -98,7 +98,7 @@ export default function Profile() {
         const accessToken = localStorage.getItem('accessToken');
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 0B8pGyJ-BJHG9KQVsYGXhq07fIt_H3JS`,
+            'Authorization': `Bearer apikey`,
         };
         let requestOptions = {
             method: 'DELETE',

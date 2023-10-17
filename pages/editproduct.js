@@ -12,7 +12,7 @@ export default function EditProduct() {
     const apiUrl = "http://localhost:8055/items/product";
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", "Bearer 0B8pGyJ-BJHG9KQVsYGXhq07fIt_H3JS");
+    myHeaders.append("Authorization", "Bearer apikey");
     useEffect(() => {
         const handleRead = () => {
             fetch(apiUrl, {
@@ -36,7 +36,7 @@ export default function EditProduct() {
 
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 0B8pGyJ-BJHG9KQVsYGXhq07fIt_H3JS`,
+            'Authorization': `Bearer apikey`,
         };
         const body = {
             Product_Name: productToEdit.Product_Name ?? productToEdit.Product_Name,
@@ -66,7 +66,7 @@ export default function EditProduct() {
     const handleDelete = async (productId) => {
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 0B8pGyJ-BJHG9KQVsYGXhq07fIt_H3JS`,
+            'Authorization': `Bearer apikey`,
         };
         let requestOptions = {
             method: 'DELETE',

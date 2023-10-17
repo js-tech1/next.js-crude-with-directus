@@ -21,7 +21,7 @@ export default function About() {
   const apiUrl = 'http://localhost:8055/items/user';
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", "Bearer rQ6lIiyR1r4DJ2AOCXmcGyIeWbyK98-m");
+  myHeaders.append("Authorization", "Bearer apikey");
 
   function generateAccessToken(userId) {
     const jwt = require('jsonwebtoken');

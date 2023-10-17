@@ -11,7 +11,7 @@ export default function Product() {
     const apiUrl = "http://localhost:8055/items/product";
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", "Bearer 0B8pGyJ-BJHG9KQVsYGXhq07fIt_H3JS");
+    myHeaders.append("Authorization", "Bearer apikey");
 
     const handleProductName = (event) => {
         setProductName(event.target.value);

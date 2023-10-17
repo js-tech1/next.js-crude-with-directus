@@ -9,7 +9,7 @@ export default function Checkuser() {
         const fetchUsers = async () => {
             const headers = {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer rQ6lIiyR1r4DJ2AOCXmcGyIeWbyK98-m',
+                Authorization: 'Bearer apikey',
             };
 
             try {

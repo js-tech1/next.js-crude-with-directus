@@ -47,7 +47,7 @@ export default function Register() {
     const apiUrl = 'http://localhost:8055/users';
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", "Bearer rQ6lIiyR1r4DJ2AOCXmcGyIeWbyK98-m");
+    myHeaders.append("Authorization", "Bearer apikey");
 
     const handleCreate = async () => {
         const newItem = { first_name: fname, last_name: lname, email: email, password: Pass, role: "20135088-9892-4bf2-b97b-cbf7fdfcb12f" };
