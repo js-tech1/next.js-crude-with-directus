@@ -13,3 +13,16 @@
     justify-content: center;
     align-items: center;
 } */
+
+.myfrm{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.mybtn{
+    display: flex;
+    justify-content: space-evenly;
+}

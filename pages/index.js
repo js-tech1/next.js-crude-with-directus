@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from '../styles/form.module.css'
+import { useRouter } from 'next/router';
+
 export default function About() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // const accessToken = localStorage.getItem('accessToken');
+    // if (accessToken) {
+        router.push('/login');
+    // }
+}, []);
   const [items, setItems] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setInputValue] = useState('');
   const [displayTable, setDisplayTable] = useState(false);
   const [updateId, setUpdateId] = useState('');
   const [updateName, setUpdateName] = useState('');
@@ -10,27 +21,37 @@ export default function About() {
   const apiUrl = 'http://localhost:8055/items/user';
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", "Bearer KBJuNrrVw0rc0RVGsVfYQu7KMiQvZHe-");
+  myHeaders.append("Authorization", "Bearer rQ6lIiyR1r4DJ2AOCXmcGyIeWbyK98-m");
 
+  function generateAccessToken(userId) {
+    const jwt = require('jsonwebtoken');
+    const secretKey = `mysecret`  ; // Replace with your secret key
+
+    const token = jwt.sign({ userId }, secretKey, { expiresIn: '1h' });
+    // return token;
+}
   const handleCreate = async () => {
     const id = Math.floor(Math.random() * Date.now())
-    const newItem = { id: id ,name: inputValue };
-    console.log(newItem)
+    const newItem = { id: id, email: emailValue, password: passwordValue };
+    generateAccessToken(id);
     await fetch(apiUrl, {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify(newItem),
     })
-      .then((response) =>  response.status)
+      .then((response) => response.status)
       .then((data) => {
         console.log('Created item:', data);
       });
   };
 
   const handleRead = () => {
-    fetch(apiUrl)
+    fetch(apiUrl, {
+      headers: myHeaders,
+    })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data.data);
         setItems(JSON.stringify(data.data));
         setDisplayTable(!displayTable);
       });
@@ -63,6 +84,10 @@ export default function About() {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+  const handlepassChange = (event) =>{
+    setEmailValue(event.target.value);
+
+  }
 
   const handleUpdateIdChange = (event) => {
     setUpdateId(event.target.value);
@@ -78,7 +103,9 @@ export default function About() {
 
   return (
     <>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <input type="text" value={emailValue} onChange={handlepassChange} />
+      <input type="text" value={passwordValue} onChange={handleInputChange} />
+
       <button onClick={handleCreate} className={style.button}>Create Item</button>
       <button onClick={handleRead} className={style.button}>Read Items</button>
       {displayTable && (
@@ -86,14 +113,16 @@ export default function About() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>email</th>
+              <th>password</th>
             </tr>
           </thead>
           <tbody>
             {JSON.parse(items).map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.password}</td>
               </tr>
             ))}
           </tbody>
